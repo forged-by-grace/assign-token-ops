@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assign-token
+  labels:
+    app: assign-token-app
+  namespace: token
+spec:
+  selector:
+    matchLabels:
+      app: assign-token-app
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: assign-token-app
+    spec:
+      containers:
+      - name: assign-token-app
+        image: conano/assign-token-app:latest
+        envFrom:
+          - secretRef:
+              name: assign-token-secret
+          - secretRef:
+              name: common-secret
+        livenessProbe:
+          exec:
+            command:
+              - python3.11
+              - check_health.py
+        imagePullPolicy: Always        
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+      
