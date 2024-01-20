@@ -1,5 +1,4 @@
-pipeline {
-    agent { label "Jenkins-Agent" }
+pipeline {    
     environment {
               APP_NAME = "assign-token"
     }
