@@ -25,9 +25,7 @@ spec:
         image: conano/assign-token:latest
         envFrom:
           - secretRef:
-              name: assign-token-secret
-          - secretRef:
-              name: common-secret
+              name: assign-token-secret          
         livenessProbe:
           exec:
             command:
