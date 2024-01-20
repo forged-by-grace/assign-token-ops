@@ -4,7 +4,7 @@ metadata:
   name: assign-token
   labels:
     app: assign-token-app
-  namespace: token
+  namespace: token-handler
 spec:
   selector:
     matchLabels:
