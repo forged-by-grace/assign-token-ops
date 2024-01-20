@@ -22,7 +22,44 @@ spec:
     spec:
       containers:
       - name: assign-token-app
-        image: conano/assign-token:latest                  
+        image: conano/assign-token:latest
+        env:
+          - name: api_event_streaming_client_id
+            valueFrom:
+              secretKeyRef:
+                key: api_event_streaming_client_id 
+          - name: service_name
+            valueFrom:
+              secretKeyRef:
+                key: service_name
+          - name: api_assign_token
+            valueFrom:
+              secretKeyRef:
+                key: api_assign_token 
+          - name: api_device
+            valueFrom:
+              secretKeyRef:
+                key: api_device 
+          - name: api_add_device
+            valueFrom:
+              secretKeyRef:
+                key: api_add_device
+          - name: api_cache
+            valueFrom:
+              secretKeyRef:
+                key: api_cache 
+          - name: api_event_streaming_host
+            valueFrom:
+              secretKeyRef:
+                key: api_event_streaming_host 
+          - name: api_db_url
+            valueFrom:
+              secretKeyRef:
+                key: api_db_url 
+          - name: api_redis_host_local
+            valueFrom:
+              secretKeyRef:
+                key: api_redis_host_local        
         livenessProbe:
           exec:
             command:
@@ -36,11 +73,4 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
-        volumeMounts:
-        - name: secret-volume
-          mountPath: /secrets/        
-      volumes:
-      - name: secret-volume
-        secret:
-          secretName: assign-token-secret
       
