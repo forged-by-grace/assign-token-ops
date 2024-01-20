@@ -24,10 +24,51 @@ spec:
       - name: assign-token-app
         image: conano/assign-token:latest
         env:
-          - name: api_event_streaming_client_id
+          - name: api-event-streaming-client-id
             valueFrom:
               secretKeyRef:
-                key: api_event_streaming_client_id                
+                name: assign-token-secret
+                key: api_event_streaming_client_id 
+          - name: service-name
+            valueFrom:
+              secretKeyRef:
+                name: assign-token-secret
+                key: service_name
+          - name: api-assign-token
+            valueFrom:
+              secretKeyRef:
+                name: assign-token-secret
+                key: api_assign_token 
+          - name: api-device
+            valueFrom:
+              secretKeyRef:
+                name: assign-token-secret
+                key: api_device 
+          - name: api-add-device
+            valueFrom:
+              secretKeyRef:
+                name: assign-token-secret
+                key: api_add_device
+          - name: api-cache
+            valueFrom:
+              secretKeyRef:
+                name: assign-token-secret
+                key: api_cache 
+          - name: api-event-streaming-host
+            valueFrom:
+              secretKeyRef:
+                name: assign-token-secret
+                key: api_event_streaming_host 
+          - name: api-db-url
+            valueFrom:
+              secretKeyRef:
+                name: assign-token-secret
+                key: api_db_url 
+          - name: api-redis-host-local
+            valueFrom:
+              secretKeyRef:
+                name: assign-token-secret
+                key: api_redis_host_local        
         livenessProbe:
           exec:
             command:
