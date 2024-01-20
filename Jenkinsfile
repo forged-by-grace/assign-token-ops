@@ -1,7 +1,7 @@
 pipeline { 
     agent any   
     environment {
-              APP_NAME = "assign-token"
+              APP_NAME = "assign-token-container"
     }
 
     stages {
