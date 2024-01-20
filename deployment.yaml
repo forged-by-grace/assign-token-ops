@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: assign-token-app
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -68,12 +68,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: assign-token-secret
-                key: api_redis_host_local        
-        livenessProbe:
-          exec:
-            command:
-              - python3.11
-              - check_health.py
+                key: api_redis_host_local 
         imagePullPolicy: IfNotPresent        
         resources:
           requests:
