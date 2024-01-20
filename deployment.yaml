@@ -22,10 +22,7 @@ spec:
     spec:
       containers:
       - name: assign-token-app
-        image: conano/assign-token:latest
-        envFrom:
-          - secretRef:
-              name: assign-token-secret          
+        image: conano/assign-token:latest                  
         livenessProbe:
           exec:
             command:
@@ -39,4 +36,11 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
+        volumeMounts:
+        - name: secret-volume
+          mountPath: /secrets/        
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: assign-token-secret
       
