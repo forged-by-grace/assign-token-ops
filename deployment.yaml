@@ -23,52 +23,9 @@ spec:
       containers:
       - name: assign-token-app
         image: conano/assign-token-container:0.0.1-19
-        env:
-          - name: api_event_streaming_client_id
-            valueFrom:
-              secretKeyRef:
-                name: assign-token-secret
-                key: api_event_streaming_client_id 
-          - name: service_name
-            valueFrom:
-              secretKeyRef:
-                name: assign-token-secret
-                key: service_name
-          - name: api_assign_token
-            valueFrom:
-              secretKeyRef:
-                name: assign-token-secret
-                key: api_assign_token 
-          - name: api_device
-            valueFrom:
-              secretKeyRef:
-                name: assign-token-secret
-                key: api_device 
-          - name: api_add_device
-            valueFrom:
-              secretKeyRef:
-                name: assign-token-secret
-                key: api_add_device
-          - name: api_cache
-            valueFrom:
-              secretKeyRef:
-                name: assign-token-secret
-                key: api_cache 
-          - name: api_event_streaming_host
-            valueFrom:
-              secretKeyRef:
-                name: assign-token-secret
-                key: api_event_streaming_host 
-          - name: api_db_url
-            valueFrom:
-              secretKeyRef:
-                name: assign-token-secret
-                key: api_db_url 
-          - name: api_redis_host_local
-            valueFrom:
-              secretKeyRef:
-                name: assign-token-secret
-                key: api_redis_host_local 
+        envFrom:
+        - secretRef:
+          - name: assign-token-secret
         imagePullPolicy: IfNotPresent        
         resources:
           requests:
