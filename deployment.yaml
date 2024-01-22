@@ -25,7 +25,7 @@ spec:
         image: conano/assign-token-container:0.0.1-19
         envFrom:
         - secretRef:
-          - name: assign-token-secret
+            name: assign-token-secret
         imagePullPolicy: IfNotPresent        
         resources:
           requests:
