@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: assign-token-app
-        image: conano/assign-token-container:0.0.1-21
+        image: conano/assign-token-container:0.0.1-22
         envFrom:
         - secretRef:
             name: assign-token-secret
